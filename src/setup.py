@@ -1,8 +1,13 @@
+import os
 import customtkinter
+from main import App
+from assembler import AssemblerSettings
 
-class Settings(customtkinter.CTkToplevel):
+customtkinter.set_appearance_mode('dark')
 
-    """ This is the Settings object.
+class Setup(customtkinter.CTk):
+
+    """ This is the Setup object.
         Used to setup the project's most
         important options at the project
         startup """
@@ -11,7 +16,7 @@ class Settings(customtkinter.CTkToplevel):
         super().__init__()
 
         # Window settings
-        self.title('CodeGenie - Settings')
+        self.title('CodeGenie - Setup')
         self.geometry('550x300')
         self.resizable(False, False)
 
@@ -41,7 +46,7 @@ class Settings(customtkinter.CTkToplevel):
         self.label_resizable = customtkinter.CTkLabel(self, text='Resizable (x, y)', font=(None, 18))
         self.label_resizable.grid(row=4, column=0, pady=5, padx=30)
 
-        self.resizable_property = customtkinter.CTkEntry(self, placeholder_text='Example: True, False', width=200, corner_radius=10, border_color='#5e45a5')
+        self.resizable_property = customtkinter.CTkEntry(self, placeholder_text='Example: (True, False)', width=200, corner_radius=10, border_color='#5e45a5')
         self.resizable_property.grid(row=5, column=0, padx=30)
 
         # Background color
@@ -61,4 +66,20 @@ class Settings(customtkinter.CTkToplevel):
 
     # Save settings and transfer them to the assembler
     def save_settings(self):
-        print('saved')
+
+        # Create the file to write down the GUI (if it already exists it is first deleted)
+        if os.path.exists("code.py"):
+            os.remove("code.py")
+        open("code.py", "w").close()
+
+        AssemblerSettings(title=self.project_title.get(),
+                        geometry=self.window_geometry.get(),
+                        resize=self.resizable_property.get(),
+                        background=self.background_color.get())
+
+        app = App()
+        return self.destroy()
+
+if __name__ == "__main__":
+    setup = Setup()
+    setup.mainloop()

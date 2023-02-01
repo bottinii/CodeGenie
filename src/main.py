@@ -1,6 +1,5 @@
 import customtkinter
-from settings import Settings
-from assembler import Assembler
+from frame import Frame
 
 customtkinter.set_appearance_mode('dark')
 
@@ -20,7 +19,7 @@ class App(customtkinter.CTk):
 
         # Landing page
         self.navbar = customtkinter.CTkSegmentedButton(self,
-                                                values=["Settings", "Frame", "Label", "Button", "Input", "Switch", "Option-Menu", "CheckBox", "Popup"],
+                                                values=["Frame", "Label", "Button", "Input", "Switch", "Option-Menu", "CheckBox", "Popup"],
                                                 command=self.navbar_callback,
                                                 selected_color='#3d2d6c',
                                                 selected_hover_color='#3d2d6c',
@@ -31,7 +30,7 @@ class App(customtkinter.CTk):
 
     # Callback of each button in the navbar
     def navbar_callback(self, button):
-        if button.lower() == 'settings': return Settings()
+        if button.lower() == 'frame': return Frame()
 
     # GUI preview
     def preview(self):
@@ -50,7 +49,3 @@ class App(customtkinter.CTk):
                                                 corner_radius=0,
                                                 fg_color='#2b2b2b')
         self.actual_preview_frame.pack(expand=True)
-
-if __name__ == "__main__":
-    app = App()
-    app.mainloop()
