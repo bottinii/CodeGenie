@@ -6,9 +6,9 @@ customtkinter.set_appearance_mode('dark')
 
 class App(customtkinter.CTk):
 
-    """ This is the frontend class where is also
-        used the assembler.py file to return the
-        generated code """
+    """ This is the main frontend class where is 
+        initialized the navbar and the preview
+        frame """
 
     def __init__(self):
         super().__init__()
