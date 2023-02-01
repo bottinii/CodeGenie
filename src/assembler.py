@@ -1,0 +1,3 @@
+
+class Assembler:
+    pass
