@@ -28,15 +28,14 @@ class Setup(customtkinter.CTk):
                             ['Background color (hex)', 4, 1]
                         ]
 
-        # First Spacer
-        self.spacer = customtkinter.CTkLabel(self, text='')
-        self.spacer.grid(row=0, column=0)
+        # Spacers
+        c = 3
+        while c >= 0:
+            self.spacer = customtkinter.CTkLabel(self, text='')
+            self.spacer.grid(row=c, column=0)
+            c -= 3
 
-        # Second Spacer
-        self.spacer = customtkinter.CTkLabel(self, text='')
-        self.spacer.grid(row=3, column=0)
-
-        # Lables
+        # Labels
         for i in range(len(list_of_labels)):
             self.label = customtkinter.CTkLabel(self,
                                                 text=list_of_labels[i][0],
@@ -115,7 +114,7 @@ class Setup(customtkinter.CTk):
                         resize=self.resizable_property.get(),
                         background=self.background_color.get())
 
-        app = App()
+        app = App(title=self.project_title.get(), background=self.background_color.get())
         return self.destroy()
 
 if __name__ == "__main__":

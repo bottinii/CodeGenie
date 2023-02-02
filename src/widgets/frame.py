@@ -20,7 +20,7 @@ class Frame(customtkinter.CTk):
                             ['Frame\'s parent', 1, 0],
                             ['Frame\'s name', 1, 1],
                             ['Frame\'s dimensions', 4, 0],
-                            ['Background color', 4, 1],
+                            ['Background color (hex)', 4, 1],
                             ['Border color', 7, 0],
                             ['Border radius', 7, 1],
                             ['Column (y)', 10, 0],

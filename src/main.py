@@ -1,3 +1,4 @@
+import tkinter.messagebox as MsBx
 import customtkinter
 from widgets.frame import Frame
 
@@ -9,13 +10,23 @@ class App(customtkinter.CTk):
         initialized the navbar and the preview
         frame """
 
-    def __init__(self):
+    def __init__(self, title, background):
         super().__init__()
 
+        # Stored data
+        self.title_preview = title
+        self.background_preview = background
+
+        # On closing protocol
+        def on_closing():
+            if MsBx.askokcancel("Quit", "Your work will be lost. Are you sure you want to exit?"):
+                self.destroy()
+
         # Window settings
-        self.title('CodeGenie - Build')
+        self.title(f'CodeGenie - \'{self.title_preview}\'')
         self.geometry('700x450')
         self.resizable(False, False)
+        self.protocol("WM_DELETE_WINDOW", on_closing)
 
         # Landing page
         self.navbar = customtkinter.CTkSegmentedButton(self,
@@ -37,6 +48,7 @@ class App(customtkinter.CTk):
 
         # Fake preview frame only for aesthetic purpose
         self.fake_preview_frame = customtkinter.CTkFrame(self,
+                                                fg_color=self.background_preview,
                                                 corner_radius=25,
                                                 border_color='#5e45a5',
                                                 border_width=3)
@@ -44,8 +56,8 @@ class App(customtkinter.CTk):
 
         # The actual frame used to preview the interface
         self.actual_preview_frame = customtkinter.CTkFrame(self.fake_preview_frame,
+                                                fg_color=self.background_preview,
                                                 width=540,
                                                 height=300,
-                                                corner_radius=0,
-                                                fg_color='#2b2b2b')
+                                                corner_radius=0)
         self.actual_preview_frame.pack(expand=True)

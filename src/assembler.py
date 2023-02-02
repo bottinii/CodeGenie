@@ -55,6 +55,7 @@ class AssemblerFrame:
         with open("code.py", "a") as self.code:
             self.code.write(f"""
         self.{self.nameFrame} = customtkinter.CTkFrame(master={self.parentFrame}, width={self.sizeFrame[0]}, height={self.sizeFrame[1]}, fg_color='{self.backgroundFrame}', border_width=3, border_color='{self.borderFrame}', corner_radius={self.radiusFrame})
-        self.{self.nameFrame}.grid(column={self.columnFrame}, row={self.rowFrame}, padx={self.padxFrame}, pady={self.padyFrame})""")   
+        self.{self.nameFrame}.grid(column={self.columnFrame}, row={self.rowFrame}, padx={self.padxFrame}, pady={self.padyFrame})
+        """)   
 
         self.code.close()     
