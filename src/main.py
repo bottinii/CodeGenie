@@ -1,3 +1,4 @@
+import os
 import tkinter.messagebox as MsBx
 import customtkinter
 from widgets.frame import Frame
@@ -45,19 +46,25 @@ class App(customtkinter.CTk):
 
     # GUI preview
     def preview(self):
+        
+        try:
+            # Fake preview frame only for aesthetic purpose
+            self.fake_preview_frame = customtkinter.CTkFrame(self,
+                                                    fg_color=self.background_preview,
+                                                    corner_radius=25,
+                                                    border_color='#5e45a5',
+                                                    border_width=3)
+            self.fake_preview_frame.pack(padx=70, pady=40, expand=True, fill='both')
 
-        # Fake preview frame only for aesthetic purpose
-        self.fake_preview_frame = customtkinter.CTkFrame(self,
-                                                fg_color=self.background_preview,
-                                                corner_radius=25,
-                                                border_color='#5e45a5',
-                                                border_width=3)
-        self.fake_preview_frame.pack(padx=70, pady=40, expand=True, fill='both')
-
-        # The actual frame used to preview the interface
-        self.actual_preview_frame = customtkinter.CTkFrame(self.fake_preview_frame,
+            # The actual frame used to preview the interface
+            self.actual_preview_frame = customtkinter.CTkFrame(self.fake_preview_frame,
                                                 fg_color=self.background_preview,
                                                 width=540,
                                                 height=300,
                                                 corner_radius=0)
-        self.actual_preview_frame.pack(expand=True)
+            self.actual_preview_frame.pack(expand=True)
+        
+        except Exception as err:
+            MsBx.showerror('Error', err)
+            os.remove("code.py")
+            self.destroy()

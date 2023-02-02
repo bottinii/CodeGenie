@@ -1,4 +1,5 @@
 import os
+import tkinter.messagebox as MsBx
 import customtkinter
 from main import App
 from assembler import AssemblerSettings
@@ -104,7 +105,10 @@ class Setup(customtkinter.CTk):
     # Save settings and transfer them to the assembler
     def save_settings(self):
 
-        # Create the file to write down the GUI (if it already exists it is first deleted)
+        # Check if the input is valid
+        if len(self.project_title.get()) <= 0: return MsBx.showerror("Error", "Project name too short.")
+
+        # Create the file to write down the GUI (if it already exists it is deleted first)
         if os.path.exists("code.py"):
             os.remove("code.py")
         open("code.py", "w").close()
