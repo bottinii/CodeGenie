@@ -5,13 +5,13 @@ class AssemblerSettings:
         data entered by the user and to create
         the actual GUI """
 
-    def __init__(self, title='CodeGenie - Test App', geometry='600x400', resize='False, False', background='#2b2b2b'):
+    def __init__(self, title, geometry, resize, background):
         
         # Stored data
-        self.title = title
-        self.geometry = geometry.split('x')
-        self.resize = resize
-        self.background = background
+        self.titleProject = title
+        self.geometryProject = geometry
+        self.resizeProject = resize
+        self.backgroundProject = background
 
         # Initialize settings in GUI code
         with open("code.py", "w") as code:
@@ -26,14 +26,9 @@ class Gui(customtkinter.CTk):
         super().__init__()
 
         # Initialize window's settings
-        self.title('{self.title}')
-        self.geometry('{self.geometry[0]}x{self.geometry[1]}')
-        self.resizable({self.resize})
-        self.configure(fg_color='{self.background}')
-
-        # FIX THIS SHIT NOW!!!!
-        self.minsize({int(self.geometry[0]*0.5)}x{int(self.geometry[1]*0.5)})
-
-Gui().mainloop()""")
+        self.title('{self.titleProject}')
+        self.geometry('{self.geometryProject}')
+        self.resizable({self.resizeProject})
+        self.configure(fg_color='{self.backgroundProject}')""")
             
             code.close()

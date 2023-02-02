@@ -1,5 +1,5 @@
 import customtkinter
-from frame import Frame
+from widgets.frame import Frame
 
 customtkinter.set_appearance_mode('dark')
 
@@ -13,7 +13,7 @@ class App(customtkinter.CTk):
         super().__init__()
 
         # Window settings
-        self.title('CodeGenie')
+        self.title('CodeGenie - Build')
         self.geometry('700x450')
         self.resizable(False, False)
 
